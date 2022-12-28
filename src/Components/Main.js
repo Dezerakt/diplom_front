@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography} from "@mui/material";
 import Layout from "../Assets/Layout";
 import {Link} from "react-router-dom";
+import {Grid, Dimmer, Image, Item, Header, Button} from "semantic-ui-react";
+import {hover} from "@testing-library/user-event/dist/hover";
 
 function Main(props) {
     const back_url = process.env.REACT_APP_BACK_URL
 
+    const [active, setActive] = useState(false);
     const [newAlbums, setNewAlbums] = useState([])
 
     useEffect(() => {
@@ -21,45 +23,56 @@ function Main(props) {
         };
     }, []);
 
+    /*<Item>
+        <Item.Image src={item.image_url} size='20'/>
+        <Item.Content>
+            <Item.Header as={'a'}>{item.name}</Item.Header>
+        </Item.Content>
+    </Item>*/
 
+    const content = (
+        <div>
+            <Header as='h2' inverted>
+                Title
+            </Header>
+
+            <Button primary>Add</Button>
+            <Button>View</Button>
+        </div>
+    )
     return (
         <Layout>
             <h1>Main Page</h1>
-            <Grid container spacing={3} style={{
-                margin: "auto"
+            <div style={{
+                backgroundImage: `url('https://www.rollingstone.com/wp-content/uploads/2018/06/rs-beatles-70b3b040-a02b-4323-8247-69dbbdd6af10.jpg?w=1500&h=1054&crop=1')`,
+
+                /* Set a specific height */
+                minHeight: '500px',
+
+                /* Create the parallax scrolling effect */
+                backgroundAttachment: 'fixed',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
             }}>
-                {
-                    newAlbums.map(item => {
-                        return (
-                            <Grid item sx={{ maxWidth: 200 }}>
-                                <Link to={'/singer/' + item.ID}>
-                                    <CardActionArea style={{
-                                        backgroundColor: "gray"
-                                    }}>
-                                        <CardMedia
-                                            component="img"
-                                            height="100%"
-                                            width={'auto'}
-                                            image={item.image_url}
-                                            alt="green iguana"
-                                        />
-                                        <CardContent>
-                                            <Typography gutterBottom variant="h5" component="div">
-                                                {item.name}
-                                            </Typography>
-                                            <Typography variant="caption" display="block" gutterBottom>
-                                                {item.count}
-                                            </Typography>
-                                            <Typography variant="caption" display="block" gutterBottom>
-                                                {item.price}
-                                            </Typography>
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Link>
-                            </Grid>
-                        )
-                    })
-                }
+
+            </div>
+            <Grid relaxed={true}>
+                <Grid.Row columns={6}>
+                    {
+                        newAlbums.map(item => {
+                            return (
+                                <Grid.Column
+                                    key={item.ID + "-newalbum"}>
+                                    <Item.Image src={item.image_url} size={"medium"}/>
+                                    <Item.Content>
+                                        <Item.Header>{item.name}</Item.Header>
+                                    </Item.Content>
+                                </Grid.Column>
+                            )
+                        })
+                    }
+                </Grid.Row>
             </Grid>
         </Layout>
 
