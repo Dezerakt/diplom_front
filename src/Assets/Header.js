@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
 import Layout from "./Layout";
-import {Input, Menu} from "semantic-ui-react";
+import {
+    Button,
+    Container, Form, Nav,
+    Navbar, NavDropdown, Offcanvas
+} from "react-bootstrap";
 
 function Header(props) {
     const [activeItem, setActiveItem] = useState('initState');
@@ -10,33 +14,51 @@ function Header(props) {
 
     return (
         <div>
-            <Menu>
-                <Menu.Item
-                    name='home'
-                    active={activeItem === 'home'}
-                    onClick={handleItemClick}
-                />
-                <Menu.Item
-                    name='messages'
-                    active={activeItem === 'messages'}
-                    onClick={handleItemClick}
-                />
-                <Menu.Item
-                    name='friends'
-                    active={activeItem === 'friends'}
-                    onClick={handleItemClick}
-                />
-                <Menu.Menu position='right'>
-                    <Menu.Item>
-                        <Input icon='search' placeholder='Search...' />
-                    </Menu.Item>
-                    <Menu.Item
-                        name='logout'
-                        active={activeItem === 'logout'}
-                        onClick={handleItemClick}
-                    />
-                </Menu.Menu>
-            </Menu>
+            <Navbar key={'md'} bg="light" expand={'md'} className="mb-3">
+                <Container fluid>
+                    <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
+                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${'md'}`} />
+                    <Navbar.Offcanvas
+                        id={`offcanvasNavbar-expand-${'md'}`}
+                        aria-labelledby={`offcanvasNavbarLabel-expand-${'md'}`}
+                        placement="end"
+                    >
+                        <Offcanvas.Header closeButton>
+                            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${'md'}`}>
+                                Offcanvas
+                            </Offcanvas.Title>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body>
+                            <Nav className="justify-content-end flex-grow-1 pe-3">
+                                <Nav.Link href="#action1">Home</Nav.Link>
+                                <Nav.Link href="#action2">Link</Nav.Link>
+                                <NavDropdown
+                                    title="Dropdown"
+                                    id={`offcanvasNavbarDropdown-expand-${'md'}`}
+                                >
+                                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action4">
+                                        Another action
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="#action5">
+                                        Something else here
+                                    </NavDropdown.Item>
+                                </NavDropdown>
+                            </Nav>
+                            <Form className="d-flex">
+                                <Form.Control
+                                    type="search"
+                                    placeholder="Search"
+                                    className="me-2"
+                                    aria-label="Search"
+                                />
+                                <Button variant="outline-success">Search</Button>
+                            </Form>
+                        </Offcanvas.Body>
+                    </Navbar.Offcanvas>
+                </Container>
+            </Navbar>
         </div>
     );
 }

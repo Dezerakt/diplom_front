@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Layout from "../Assets/Layout";
+import {Card, CardGroup, Carousel, CarouselItem, Col, Container, FormText, Image, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
-import {Grid, Dimmer, Image, Item, Header, Button} from "semantic-ui-react";
-import {hover} from "@testing-library/user-event/dist/hover";
 
 function Main(props) {
     const back_url = process.env.REACT_APP_BACK_URL
@@ -23,57 +22,103 @@ function Main(props) {
         };
     }, []);
 
-    /*<Item>
-        <Item.Image src={item.image_url} size='20'/>
-        <Item.Content>
-            <Item.Header as={'a'}>{item.name}</Item.Header>
-        </Item.Content>
-    </Item>*/
-
-    const content = (
-        <div>
-            <Header as='h2' inverted>
-                Title
-            </Header>
-
-            <Button primary>Add</Button>
-            <Button>View</Button>
-        </div>
-    )
     return (
         <Layout>
-            <h1>Main Page</h1>
-            <div style={{
-                backgroundImage: `url('https://www.rollingstone.com/wp-content/uploads/2018/06/rs-beatles-70b3b040-a02b-4323-8247-69dbbdd6af10.jpg?w=1500&h=1054&crop=1')`,
-
-                /* Set a specific height */
-                minHeight: '500px',
-
-                /* Create the parallax scrolling effect */
-                backgroundAttachment: 'fixed',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-            }}>
-
-            </div>
-            <Grid relaxed={true}>
-                <Grid.Row columns={6}>
+            <Container>
+                <h1>Недавно добавленные</h1>
+                <Row md={6}>
                     {
-                        newAlbums.map(item => {
+                        newAlbums.map(album => {
                             return (
-                                <Grid.Column
-                                    key={item.ID + "-newalbum"}>
-                                    <Item.Image src={item.image_url} size={"medium"}/>
-                                    <Item.Content>
-                                        <Item.Header>{item.name}</Item.Header>
-                                    </Item.Content>
-                                </Grid.Column>
+
+                                <Col>
+                                    <Link to={'/'}>
+                                        <Card className={"card-custom-class"}>
+                                            <Card.Img variant="top" src={album.image_url} />
+                                            <Card.Body>
+                                                <Card.Title style={{color:'black'}}>{album.name}</Card.Title>
+                                                <Card.Subtitle>
+                                                    <Link to={'/a'}>
+                                                        {album.singer_name}
+                                                    </Link>
+                                                </Card.Subtitle>
+                                            </Card.Body>
+                                        </Card>
+                                    </Link>
+                                </Col>
+
                             )
                         })
                     }
-                </Grid.Row>
-            </Grid>
+
+                </Row>
+            </Container>
+
+            <Carousel style={{
+                backgroundColor: '#3a3a3a',
+                paddingTop: '250px'
+            }}>
+                <Carousel.Item>
+                    <Container>
+                        <Row md={6}>
+                            {
+                                newAlbums.map(album => {
+                                    return (
+
+                                        <Col>
+                                            <Link to={'/'}>
+                                                <Card className={"card-custom-class"}>
+                                                    <Card.Img variant="top" src={album.image_url} />
+                                                    <Card.Body>
+                                                        <Card.Title style={{color:'black'}}>{album.name}</Card.Title>
+                                                        <Card.Subtitle>
+                                                            <Link to={'/a'}>
+                                                                {album.singer_name}
+                                                            </Link>
+                                                        </Card.Subtitle>
+                                                    </Card.Body>
+                                                </Card>
+                                            </Link>
+                                        </Col>
+
+                                    )
+                                })
+                            }
+
+                        </Row>
+                    </Container>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <Container>
+                        <Row md={6}>
+                            {
+                                newAlbums.map(album => {
+                                    return (
+
+                                        <Col>
+                                            <Link to={'/'}>
+                                                <Card className={"card-custom-class"}>
+                                                    <Card.Img variant="top" src={album.image_url} />
+                                                    <Card.Body>
+                                                        <Card.Title style={{color:'black'}}>{album.name}</Card.Title>
+                                                        <Card.Subtitle>
+                                                            <Link to={'/a'}>
+                                                                {album.singer_name}
+                                                            </Link>
+                                                        </Card.Subtitle>
+                                                    </Card.Body>
+                                                </Card>
+                                            </Link>
+                                        </Col>
+
+                                    )
+                                })
+                            }
+
+                        </Row>
+                    </Container>
+                </Carousel.Item>
+            </Carousel>
         </Layout>
 
     );
