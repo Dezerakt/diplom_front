@@ -42,6 +42,7 @@ function Main(props) {
             }}>
                 {
                     newAlbums.map(album => {
+
                         return (
                             <Carousel.Item
                                 style={{
