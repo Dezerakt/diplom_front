@@ -6,12 +6,13 @@ import {useParams} from "react-router-dom";
 function Singer(props) {
     const [singerInfo, setSingerInfo] = useState(null);
     const back_url = process.env.REACT_APP_BACK_URL
-    const { singer_id } = useParams();
+    let { singer_id } = useParams();
 
     useEffect(() => {
         return () => {
             axios.get(back_url + "/api/singer/" + singer_id)
                 .then(response => {
+                    console.log(singer_id)
                     console.log(response.data)
                     setSingerInfo(response.data)
                 })

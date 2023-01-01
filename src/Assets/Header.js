@@ -5,8 +5,10 @@ import {
     Container, Form, Nav,
     Navbar, NavDropdown, Offcanvas
 } from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 function Header(props) {
+    const ifAuth = localStorage.getItem('access_token')
     const [activeItem, setActiveItem] = useState('initState');
     function handleItemClick(){
 
@@ -14,47 +16,33 @@ function Header(props) {
 
     return (
         <div>
-            <Navbar key={'md'} bg="light" expand={'md'} className="mb-3">
+            <Navbar key={'md'} bg="light" expand={'md'} className="mb-3 bg-dark nav-custom">
                 <Container fluid>
-                    <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
+                    <Navbar.Brand>
+                        <Link to={'/'}>Music Shop</Link>
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${'md'}`} />
                     <Navbar.Offcanvas
                         id={`offcanvasNavbar-expand-${'md'}`}
                         aria-labelledby={`offcanvasNavbarLabel-expand-${'md'}`}
                         placement="end"
                     >
-                        <Offcanvas.Header closeButton>
-                            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${'md'}`}>
-                                Offcanvas
-                            </Offcanvas.Title>
-                        </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
-                                <Nav.Link href="#action1">Home</Nav.Link>
-                                <Nav.Link href="#action2">Link</Nav.Link>
-                                <NavDropdown
-                                    title="Dropdown"
-                                    id={`offcanvasNavbarDropdown-expand-${'md'}`}
-                                >
-                                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action4">
-                                        Another action
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action5">
-                                        Something else here
-                                    </NavDropdown.Item>
-                                </NavDropdown>
+                                <Nav.Link href="#action0">Catalog</Nav.Link>
+                                {
+                                    ifAuth != null ? <>
+                                            <Nav.Link href="#action1">Profile</Nav.Link>
+                                            <Nav.Link href="#action2">Cart</Nav.Link>
+                                            <Nav.Link href="#action3">Exit</Nav.Link>
+                                        </>
+                                        :
+                                        <>
+                                            <Nav.Link href="#action1">Sign In</Nav.Link>
+                                            <Nav.Link href="#action1">Sign Up</Nav.Link>
+                                        </>
+                                }
                             </Nav>
-                            <Form className="d-flex">
-                                <Form.Control
-                                    type="search"
-                                    placeholder="Search"
-                                    className="me-2"
-                                    aria-label="Search"
-                                />
-                                <Button variant="outline-success">Search</Button>
-                            </Form>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                 </Container>
