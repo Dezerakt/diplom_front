@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Layout from "../Assets/Layout";
-import {Card, CardGroup, Carousel, CarouselItem, Col, Container, FormText, Image, Row} from "react-bootstrap";
+import {Card, Carousel, Col, Container, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
 function Main(props) {
     const back_url = process.env.REACT_APP_BACK_URL
 
-    const [active, setActive] = useState(false);
     const [newAlbums, setNewAlbums] = useState([])
     const [backgroundUrl, setBackgroundUrl] = useState('');
 
@@ -63,30 +62,34 @@ function Main(props) {
                                         zIndex: -1,
                                     }}
                                 >
-
                                 </div>
-                                <div
-                                    className={'album-cover'}
-                                    style={{
-                                        backgroundSize: "contain",
-                                        backgroundImage: `url("${album.image_url}")`,
-                                        zIndex: 2,
-                                        margin: '7% 0 0 250px',
-                                        width: '450px',
-                                        height: '450px',
-                                          }}/>
-                                {/*<div
-                                    style={{
-                                        filter: 'blur(none)',
-                                        width: '500px',
-                                        backgroundImage: `url("${album.image_url}")`
-                                    }}
-                                >
-                                    <Image style={{
-                                        width: '500px',
-                                        height: '500px'
-                                    }} src={album.image_url}/>
-                                </div>*/}
+                                <Container>
+                                    <Row>
+                                        <Col>
+                                            <div
+                                                className={'album-cover'}
+                                                style={{
+                                                    backgroundSize: "contain",
+                                                    backgroundImage: `url("${album.image_url}")`,
+                                                    zIndex: 2,
+                                                    margin: '20% 0 0 50px',
+                                                    width: '450px',
+                                                    height: '450px',
+                                                }}/>
+                                        </Col>
+                                        <Col>
+                                            <div
+                                                style={{
+                                                    marginTop: '150px'
+                                                }}
+                                                className={'newalbums-textblock'}
+                                            >
+                                                <h1>{album.name}</h1>
+                                                <h5>{album.singer_name}</h5>
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                </Container>
                             </Carousel.Item>
                         )
                     })

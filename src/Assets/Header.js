@@ -29,7 +29,7 @@ function Header(props) {
                     >
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
-                                <Nav.Link href="#action0">Catalog</Nav.Link>
+                                <Nav.Link><Link to={'/catalog'}>Catalog</Link></Nav.Link>
                                 {
                                     ifAuth != null ? <>
                                             <Nav.Link href="#action1">Profile</Nav.Link>
@@ -38,8 +38,8 @@ function Header(props) {
                                         </>
                                         :
                                         <>
-                                            <Nav.Link href="#action1">Sign In</Nav.Link>
-                                            <Nav.Link href="#action1">Sign Up</Nav.Link>
+                                            <Nav.Link><Link to={'/auth/sign-in'}>Sign In</Link></Nav.Link>
+                                            <Nav.Link><Link to={'/auth/sign-up'}>Sign Up</Link></Nav.Link>
                                         </>
                                 }
                             </Nav>

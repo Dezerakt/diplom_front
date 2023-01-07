@@ -12,8 +12,6 @@ function Singer(props) {
         return () => {
             axios.get(back_url + "/api/singer/" + singer_id)
                 .then(response => {
-                    console.log(singer_id)
-                    console.log(response.data)
                     setSingerInfo(response.data)
                 })
                 .catch(error => {
