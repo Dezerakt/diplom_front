@@ -8,14 +8,12 @@ function Main(props) {
     const back_url = process.env.REACT_APP_BACK_URL
 
     const [newAlbums, setNewAlbums] = useState([])
-    const [backgroundUrl, setBackgroundUrl] = useState('');
-
     useEffect(() => {
         return () => {
             axios.get(back_url + '/api/album/get-all', )
                 .then(promise => {
                     setNewAlbums(promise.data)
-                    setBackgroundUrl(promise.data[0].image_url)
+
                 })
                 .catch(error => {
                     console.log(error)
@@ -23,19 +21,12 @@ function Main(props) {
         };
     }, []);
 
-    function changeBackground(album_id){
-        setBackgroundUrl(newAlbums.at(album_id).image_url)
-    }
-
     return (
         <Layout>
             <h1>Recently added</h1>
 
             <Carousel
-                onSlide={x => changeBackground(x)}
                 style={{
-                //backgroundImage: `url("${backgroundUrl}")`,
-                   // backgroundColor: "red",
                     width: '100%',
                     height: '700px',
             }}>

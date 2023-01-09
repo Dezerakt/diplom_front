@@ -35,10 +35,10 @@ function Album(props) {
                         />
                     </Col>
                     <Col>
-                        <span>name:</span>
+                        <span>album name:</span>
                         <h1>{album.name}</h1>
                         <span>singer name:</span>
-                        <h1>{album.singer_name}</h1>
+                        <h3>{album.singer_name}</h3>
                     </Col>
                 </Row>
             </Container>

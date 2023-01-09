@@ -9,10 +9,12 @@ import Album from "./Components/Album";
 import Catalog from "./Components/Catalog";
 import SignUp from "./Components/SignUp";
 import SignIn from "./Components/SignIn";
+import store from "./store";
+import { Provider } from 'react-redux'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <BrowserRouter>
         <Routes>
             <Route path={'/'} element={<Main/>}/>
@@ -23,6 +25,6 @@ root.render(
             <Route path={'/auth/sign-in'} element={<SignIn/>}/>
         </Routes>
     </BrowserRouter>
-  </React.StrictMode>
+  </Provider>
 );
 

@@ -23,7 +23,7 @@ function Singer(props) {
 
     return (
         <Layout>
-
+            {singerInfo}
         </Layout>
     );
 }
