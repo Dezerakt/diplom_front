@@ -5,20 +5,16 @@ import {Card, Carousel, Col, Container, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
 function Main(props) {
-    const back_url = process.env.REACT_APP_BACK_URL
-
     const [newAlbums, setNewAlbums] = useState([])
+    const back_url = process.env.REACT_APP_BACK_URL
     useEffect(() => {
-        return () => {
-            axios.get(back_url + '/api/album/get-all', )
-                .then(promise => {
-                    setNewAlbums(promise.data)
-
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-        };
+        axios.get(back_url + '/api/album/get-all',)
+            .then(promise => {
+                setNewAlbums(promise.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }, []);
 
     return (
@@ -29,7 +25,7 @@ function Main(props) {
                 style={{
                     width: '100%',
                     height: '700px',
-            }}>
+                }}>
                 {
                     newAlbums.map(album => {
 
@@ -54,33 +50,41 @@ function Main(props) {
                                     }}
                                 >
                                 </div>
-                                <Container>
-                                    <Row>
-                                        <Col>
-                                            <div
-                                                className={'album-cover'}
-                                                style={{
-                                                    backgroundSize: "contain",
-                                                    backgroundImage: `url("${album.image_url}")`,
-                                                    zIndex: 2,
-                                                    margin: '20% 0 0 50px',
-                                                    width: '450px',
-                                                    height: '450px',
-                                                }}/>
-                                        </Col>
-                                        <Col>
-                                            <div
-                                                style={{
-                                                    marginTop: '150px'
-                                                }}
-                                                className={'newalbums-textblock'}
-                                            >
-                                                <h1>{album.name}</h1>
-                                                <h5>{album.singer_name}</h5>
-                                            </div>
-                                        </Col>
-                                    </Row>
-                                </Container>
+                                <Link to={'/album/' + album.ID}>
+                                    <Container>
+                                        <Row>
+                                            <Col>
+
+                                                <div
+                                                    className={'album-cover'}
+                                                    style={{
+                                                        backgroundSize: "contain",
+                                                        backgroundImage: `url("${album.image_url}")`,
+                                                        zIndex: 2,
+                                                        margin: '20% 0 0 50px',
+                                                        width: '450px',
+                                                        height: '450px',
+                                                    }}/>
+
+                                            </Col>
+                                            <Col>
+                                                <div
+                                                    style={{
+                                                        marginTop: '150px'
+                                                    }}
+                                                    className={'newalbums-textblock'}
+                                                >
+                                                    <div style={{
+                                                        fontSize: '80px'
+                                                    }}>{album.name}</div>
+                                                    <div style={{
+                                                        fontSize: '50px'
+                                                    }}>{album.singer_name}</div>
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                    </Container>
+                                </Link>
                             </Carousel.Item>
                         )
                     })
@@ -102,9 +106,9 @@ function Main(props) {
                                     key={album.ID + '-' + album.name + '-col'}>
                                     <Link to={'/album/' + album.ID}>
                                         <Card className={"card-custom-class"}>
-                                            <Card.Img variant="top" src={album.image_url} />
+                                            <Card.Img variant="top" src={album.image_url}/>
                                             <Card.Body>
-                                                <Card.Title style={{color:'black'}}>{album.name}</Card.Title>
+                                                <Card.Title style={{color: 'black'}}>{album.name}</Card.Title>
                                                 <Card.Subtitle>
                                                     <Link to={'/singer/' + album.singer_id}>
                                                         {album.singer_name}

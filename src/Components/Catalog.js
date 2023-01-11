@@ -8,15 +8,13 @@ function Catalog(props) {
     const [newAlbums, setNewAlbums] = useState([])
     const back_url = process.env.REACT_APP_BACK_URL
     useEffect(() => {
-        return () => {
-            axios.get(back_url + '/api/album/get-all', )
-                .then(promise => {
-                    setNewAlbums(promise.data)
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-        };
+        axios.get(back_url + '/api/album/get-all', )
+            .then(promise => {
+                setNewAlbums(promise.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }, []);
 
     return (
