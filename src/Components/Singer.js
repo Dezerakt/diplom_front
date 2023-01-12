@@ -26,20 +26,20 @@ function Singer(props) {
 
                 {
                     singer ?
-                        <Row xs={10}>
-                            <Col xs={2}>
+                        <Row md={10}>
+                            <Col md={2}>
                                 <Image src={singer.image_url}
                                        style={{
-                                           width: '250px',
-                                           height: '250px'
+                                           width: '100%',
+                                           height: '100%'
                                        }}
                                 />
                             </Col>
-                            <Col xs={6}>
+                            <Col md={6}>
                                 <h1>{singer.name}</h1>
                                 <span>{singer.description}</span>
                             </Col>
-                            <Col xs={12} style={{
+                            <Col md={12} style={{
                                 marginTop: '10px'
                             }}>
                                 <Table hover={true} horizontal={true}>

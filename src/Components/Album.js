@@ -26,16 +26,16 @@ function Album(props) {
     return (
         <Layout>
             <Container fluid={true}>
-                <Row xs={24}>
-                    <Col xs={2}>
+                <Row lg={24}>
+                    <Col xxl={2} xl={3} lg={5} md={6}>
                         <Image src={albums.image_url}
                             style={{
-                                width: '250px',
-                                height: '250px'
+                                width: '100%',
+                                height: '100%'
                             }}
                         />
                     </Col>
-                    <Col xs={8}>
+                    <Col lg={8} sm={"auto"}>
                         <span>album name:</span>
                         <h1>{albums.name}</h1>
                         <ListGroup horizontal={true}>
@@ -53,7 +53,7 @@ function Album(props) {
                             }
                         </ListGroup>
                     </Col>
-                    <Col xs={2}>
+                    <Col lg={2}>
                         <Link to={'/singer/'+singer.ID}>
                         <Image style={{
                             justifyContent: "center",
@@ -63,7 +63,7 @@ function Album(props) {
                         }} src={singer.image_url}/>
                         <span>{singer.name}</span></Link>
                     </Col>
-                    <Col xs={12}>
+                    <Col lg={12}>
                         <Table hover={true} style={{
                             marginTop: '15px'
                         }}>
