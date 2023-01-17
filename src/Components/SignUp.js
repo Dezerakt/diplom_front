@@ -21,8 +21,7 @@ function SignUp(props) {
             username: values.username,
             password: values.password
         }).then(response => {
-            localStorage.setItem('access_token', response.data.access_token)
-            localStorage.setItem('refresh_token', response.data.refresh_token)
+            localStorage.setItem('token', response.data.token)
         }).catch(error => {
             console.log(error)
         })

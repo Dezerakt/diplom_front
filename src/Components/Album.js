@@ -9,7 +9,6 @@ function Album(props) {
     const [singer, setSinger] = useState([]);
     const back_url = process.env.REACT_APP_BACK_URL;
     let {album_id} = useParams()
-    const parser = new DOMParser()
 
     useEffect(() => {
         axios.get(back_url + '/api/album/' + album_id)
@@ -22,6 +21,14 @@ function Album(props) {
             })
     }, []);
 
+    function addToCart(albumId){
+        const arr = localStorage.getItem('albums') !== null ? localStorage.getItem('albums').split(',') : [];
+
+        if(arr.find(x => x === albumId) === undefined){
+            arr.push(albumId)
+            localStorage.setItem('albums', arr.join(','))
+        }
+    }
 
     return (
         <Layout>
@@ -38,6 +45,7 @@ function Album(props) {
                     <Col lg={8} sm={"auto"}>
                         <span>album name:</span>
                         <h1>{albums.name}</h1>
+                        <button onClick={x => addToCart(album_id)}>Buy</button>
                         <ListGroup horizontal={true}>
                             {
                                 albums.images ? albums.images.map(image => {

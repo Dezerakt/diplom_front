@@ -1,17 +1,24 @@
-import React, {useState} from 'react';
-import Layout from "./Layout";
+import React from 'react';
 import {
-    Button,
-    Container, Form, Nav,
-    Navbar, NavDropdown, Offcanvas
+    Container, Nav,
+    Navbar, Offcanvas
 } from "react-bootstrap";
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 function Header(props) {
-    const ifAuth = localStorage.getItem('access_token')
-    const [activeItem, setActiveItem] = useState('initState');
-    function handleItemClick(){
+    const ifAuth = localStorage.getItem('token')
+    const back_url = process.env.REACT_APP_BACK_URL
 
+    function logout(){
+        axios.post(back_url + '/api/auth/logout', {
+            token: localStorage.getItem('token')
+        }).then(response => {
+            localStorage.clear()
+            window.location.reload()
+        }).catch(error => {
+            console.log(error)
+        })
     }
 
     return (
@@ -33,8 +40,8 @@ function Header(props) {
                                 {
                                     ifAuth != null ? <>
                                             <Nav.Link href="#action1">Profile</Nav.Link>
-                                            <Nav.Link href="#action2">Cart</Nav.Link>
-                                            <Nav.Link href="#action3">Exit</Nav.Link>
+                                            <Nav.Link><Link to={'/cart'}>Cart</Link></Nav.Link>
+                                            <Nav.Link onClick={logout}>Exit</Nav.Link>
                                         </>
                                         :
                                         <>

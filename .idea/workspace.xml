@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81aefc39-8d89-4022-92db-6c5dc37a9fd1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Cart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assets/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/Header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Album.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Album.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Singer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Singer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SignIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SignIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SignUp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,6 +109,9 @@
       <workItem from="1673091934865" duration="674000" />
       <workItem from="1673093747783" duration="595000" />
       <workItem from="1673441816299" duration="7196000" />
+      <workItem from="1673871919417" duration="2577000" />
+      <workItem from="1673881489175" duration="1496000" />
+      <workItem from="1673964034386" duration="8665000" />
     </task>
     <servers />
   </component>

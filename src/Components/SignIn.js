@@ -1,17 +1,28 @@
 import React, {useState} from 'react';
 import Layout from "../Assets/Layout";
 import {Button, Form} from "react-bootstrap";
+import axios from "axios";
 
 function SignIn(props) {
+    const back_url = process.env.REACT_APP_BACK_URL
+
     const [values, setValues] = useState({
         email: '',
-
         password: ''
     });
 
     function onEnter(x){
         x.preventDefault();
         console.log(values)
+        axios.post(back_url + '/api/auth/sign-in', values)
+            .then(response => {
+                console.log(response.data)
+                localStorage.setItem('token', response.data.token)
+                window.location.replace('/')
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     return (
