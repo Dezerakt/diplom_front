@@ -39,7 +39,7 @@ function Header(props) {
                                 <Nav.Link><Link to={'/catalog'}>Catalog</Link></Nav.Link>
                                 {
                                     ifAuth != null ? <>
-                                            <Nav.Link href="#action1">Profile</Nav.Link>
+                                            <Nav.Link><Link to={'/profile'}>Profile</Link></Nav.Link>
                                             <Nav.Link><Link to={'/cart'}>Cart</Link></Nav.Link>
                                             <Nav.Link onClick={logout}>Exit</Nav.Link>
                                         </>

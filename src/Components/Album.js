@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Layout from "../Assets/Layout";
 import {Link, useParams} from "react-router-dom";
-import {Col, Container, Image, ListGroup, Row, Table} from "react-bootstrap";
+import {Button, Col, Container, Image, ListGroup, Row, Table} from "react-bootstrap";
 import axios from "axios";
 
 function Album(props) {
@@ -41,11 +41,10 @@ function Album(props) {
                                 height: '100%'
                             }}
                         />
+
                     </Col>
                     <Col lg={8} sm={"auto"}>
-                        <span>album name:</span>
-                        <h1>{albums.name}</h1>
-                        <button onClick={x => addToCart(album_id)}>Buy</button>
+
                         <ListGroup horizontal={true}>
                             {
                                 albums.images ? albums.images.map(image => {
@@ -60,6 +59,8 @@ function Album(props) {
                                 }) : null
                             }
                         </ListGroup>
+                        <br/>
+                        <Button onClick={x => addToCart(album_id)}>Add To Cart</Button>
                     </Col>
                     <Col lg={2}>
                         <Link to={'/singer/'+singer.ID}>
@@ -70,6 +71,19 @@ function Album(props) {
                             height: '250px'
                         }} src={singer.image_url}/>
                         <span>{singer.name}</span></Link>
+                    </Col>
+                    <Col lg={3}>
+                        <br/>
+                        <span>album name:</span>
+                        <h1>{albums.name}</h1>
+                        <span>release date:</span>
+                        <h3>{albums.release_date}</h3>
+                        <span>genre:</span>
+                        <h3>{albums.genre}</h3>
+                        <span>price:</span>
+                        <h3>{albums.price + '$'}</h3>
+                        <span>count:</span>
+                        <h3>{albums.count}</h3>
                     </Col>
                     <Col lg={12}>
                         <Table hover={true} style={{

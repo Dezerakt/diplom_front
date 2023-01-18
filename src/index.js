@@ -10,6 +10,7 @@ import Catalog from "./Components/Catalog";
 import SignUp from "./Components/SignUp";
 import SignIn from "./Components/SignIn";
 import Cart from "./Components/Cart";
+import Profile from "./Components/Profile";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +23,7 @@ root.render(
             <Route path={'/auth/sign-up'} element={<SignUp/>}/>
             <Route path={'/auth/sign-in'} element={<SignIn/>}/>
             <Route path={'/cart'} element={<Cart/>}/>
+            <Route path={'/profile'} element={<Profile/>}/>
         </Routes>
     </BrowserRouter>
 );
