@@ -14,11 +14,13 @@ function Header(props) {
         axios.post(back_url + '/api/auth/logout', {
             token: localStorage.getItem('token')
         }).then(response => {
-            localStorage.clear()
-            window.location.reload()
+
         }).catch(error => {
             console.log(error)
         })
+
+        localStorage.clear()
+        window.location.reload()
     }
 
     return (

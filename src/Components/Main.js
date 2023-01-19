@@ -6,11 +6,25 @@ import {Link} from "react-router-dom";
 
 function Main(props) {
     const [newAlbums, setNewAlbums] = useState([])
+    const [allAlbums, setAllAlbums] = useState([]);
+
     const back_url = process.env.REACT_APP_BACK_URL
     useEffect(() => {
-        axios.get(back_url + '/api/album/get-all',)
+        axios.post(back_url + '/api/album/get-few', {
+            album_ids:[
+                "1","2"
+            ]
+        })
             .then(promise => {
                 setNewAlbums(promise.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
+        axios.get(back_url + '/api/album/get-all')
+            .then(promise => {
+                setAllAlbums(promise.data)
             })
             .catch(error => {
                 console.log(error)
@@ -99,7 +113,7 @@ function Main(props) {
                 <h1>Catalog</h1>
                 <Row md={6}>
                     {
-                        newAlbums.map(album => {
+                        allAlbums.map(album => {
                             return (
 
                                 <Col

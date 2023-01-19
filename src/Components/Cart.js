@@ -6,13 +6,16 @@ import axios from "axios";
 
 function Cart(props) {
     const [albums, setAlbums] = useState([]);
+    const [user, setUser] = useState({
+        id: '',
+    });
     let totalPrice = 0;
     const back_url = process.env.REACT_APP_BACK_URL;
     const albumsLocalStorage = localStorage.getItem('albums') ? localStorage.getItem('albums').split(',') : [];
 
     useEffect(() => {
         axios.post(back_url + '/api/album/get-few', {
-            album_ids: albumsLocalStorage
+            album_ids: albumsLocalStorage,
         })
             .then(response => {
                 setAlbums(response.data)
@@ -20,26 +23,53 @@ function Cart(props) {
             .catch(error => {
                 console.log(error)
             })
+
+        axios.post(back_url + '/api/auth/get-info',{
+            token: localStorage.getItem("token")
+        }).then(response => {
+            setUser({
+                id: response.data.ID,
+            })
+        }).catch(error => {
+            console.log(error)
+        })
     }, []);
 
-    if (albums){
+    if (albums) {
         albums.map(album => {
             totalPrice += parseInt(album.price)
         })
     }
 
-    function deleteAlbum(albumId){
+    function deleteAlbum(albumId) {
         console.log('albumId: ' + albumId)
         const newAlbumArr = [];
 
         albumsLocalStorage.map(albumIdArr => {
-            if(albumIdArr.toString() !== albumId.toString()){
+            if (albumIdArr.toString() !== albumId.toString()) {
                 newAlbumArr.push(albumIdArr)
             }
         })
         console.log(newAlbumArr)
         setAlbums(albums.filter(album => album.ID !== albumId))
         localStorage.setItem('albums', newAlbumArr.join(','))
+    }
+
+    function buyAllAlbums(x){
+        x.preventDefault()
+        console.log(albumsLocalStorage)
+        axios.post(back_url + '/api/cart/add-few', {
+            album_ids: albumsLocalStorage,
+            user_id: user.id
+        })
+            .then(response => {
+                console.log(response.data)
+                setAlbums([]);
+                localStorage.setItem('albums', '')
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     return (
@@ -50,15 +80,20 @@ function Cart(props) {
                         marginTop: '20px'
                     }}>
                         <Table hover={true} horizontal={true}>
+                            <thead>
+                                <tr>
+                                    <td>
+                                        Total price: {albums ? totalPrice + '$' : 0}
+                                    </td>
+                                    <td>
+                                        Count: {albums ? albums.length : 0}
+                                    </td>
+                                    <td>
+                                        <Button onClick={x => buyAllAlbums(x)}>Buy all</Button>
+                                    </td>
+                                </tr>
+                            </thead>
                             <tbody>
-                            <tr>
-                                <td>
-                                    Total price: {albums ? totalPrice + '$' : 0}
-                                </td>
-                                <td>
-                                    Count: {albums ? albums.length : 0}
-                                </td>
-                            </tr>
                                 {
                                     albums ? albums.map(album => {
                                         return (
@@ -72,6 +107,9 @@ function Cart(props) {
                                                         }} src={album.image_url}/>
                                                         {album.name}
                                                     </Link>
+                                                </td>
+                                                <td>
+
                                                 </td>
                                                 <td>
                                                     <Button
