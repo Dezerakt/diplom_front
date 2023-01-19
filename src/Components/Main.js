@@ -12,7 +12,7 @@ function Main(props) {
     useEffect(() => {
         axios.post(back_url + '/api/album/get-few', {
             album_ids:[
-                "1","2"
+                "13","3","6"
             ]
         })
             .then(promise => {
@@ -22,7 +22,11 @@ function Main(props) {
                 console.log(error)
             })
 
-        axios.get(back_url + '/api/album/get-all')
+        axios.post(back_url + '/api/album/get-few', {
+            album_ids:[
+                "1","2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"
+            ]
+        })
             .then(promise => {
                 setAllAlbums(promise.data)
             })

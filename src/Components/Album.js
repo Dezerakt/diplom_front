@@ -72,18 +72,31 @@ function Album(props) {
                         }} src={singer.image_url}/>
                         <span>{singer.name}</span></Link>
                     </Col>
-                    <Col lg={3}>
-                        <br/>
-                        <span>album name:</span>
-                        <h1>{albums.name}</h1>
-                        <span>release date:</span>
-                        <h3>{albums.release_date}</h3>
-                        <span>genre:</span>
-                        <h3>{albums.genre}</h3>
-                        <span>price:</span>
-                        <h3>{albums.price + '$'}</h3>
-                        <span>count:</span>
-                        <h3>{albums.count}</h3>
+                    <Col lg={7}>
+                        <Row>
+                            <Col lg={4}>
+                                <span>album name:</span>
+                                <h1>{albums.name}</h1>
+                            </Col>
+                            <Col lg={2}>
+                                <span>release date:</span>
+                                <h3>{albums.release_date}</h3>
+                            </Col>
+                            <Col lg={3}>
+                                <span>genre:</span>
+                                <h3>{albums.genre}</h3>
+                            </Col>
+                        </Row>
+                        <Row lg={4}>
+                            <Col lg={2}>
+                                <span>price:</span>
+                                <h3>{albums.price + '$'}</h3>
+                            </Col>
+                            <Col lg={2}>
+                                <span>count:</span>
+                                <h3>{albums.count}</h3>
+                            </Col>
+                        </Row>
                     </Col>
                     <Col lg={12}>
                         <Table hover={true} style={{

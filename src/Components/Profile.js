@@ -46,6 +46,7 @@ function Profile(props) {
         x.preventDefault()
         console.log(values)
         axios.post(back_url + '/api/auth/change',{
+            id: values.id,
             username: values.username,
             password: values.password,
             login: values.email
