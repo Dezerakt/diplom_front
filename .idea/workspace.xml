@@ -6,9 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="81aefc39-8d89-4022-92db-6c5dc37a9fd1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assets/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/Header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Album.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Album.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SignIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SignIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SignUp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

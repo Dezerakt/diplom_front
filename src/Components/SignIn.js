@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Layout from "../Assets/Layout";
-import {Button, Form} from "react-bootstrap";
+import {Alert, Button, Form} from "react-bootstrap";
 import axios from "axios";
 
 function SignIn(props) {
@@ -11,23 +11,31 @@ function SignIn(props) {
         password: ''
     });
 
+    const [message, setMessage] = useState('');
+
     function onEnter(x){
         x.preventDefault();
         console.log(values)
         axios.post(back_url + '/api/auth/sign-in', values)
             .then(response => {
-                console.log(response.data)
                 localStorage.setItem('token', response.data.token)
                 window.location.replace('/')
             })
             .catch(error => {
-                console.log(error)
+                setMessage(error.response.data)
+                console.log(error.response.data)
             })
     }
 
     return (
         <Layout>
             <Form>
+                {
+                    message ?
+                        <Alert key={'danger'} variant={"danger"}>
+                            {message}
+                        </Alert> : null
+                }
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control

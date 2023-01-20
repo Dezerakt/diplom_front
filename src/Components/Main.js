@@ -114,7 +114,7 @@ function Main(props) {
                 style={{
                     marginTop: '25px'
                 }}>
-                <h1>Catalog</h1>
+                <h1>Top Of The Week</h1>
                 <Row md={6}>
                     {
                         allAlbums.map(album => {
@@ -142,7 +142,17 @@ function Main(props) {
                     }
 
                 </Row>
+                <Row style={{
+                    marginTop: '50px'
+                }}>
+                    <Col lg={5}></Col>
+                    <Col><Link to={'/catalog'}><h2>Check out our catalog!</h2></Link></Col>
+                </Row>
             </Container>
+            <br/>
+            <br/>
+            <br/>
+
         </Layout>
 
     );

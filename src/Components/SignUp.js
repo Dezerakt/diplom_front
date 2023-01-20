@@ -11,6 +11,7 @@ function SignUp(props) {
         username: '',
         password: '',
     });
+    const [message, setMessage] = useState('');
 
     function onEnter(x){
         x.preventDefault()
@@ -22,8 +23,10 @@ function SignUp(props) {
             password: values.password
         }).then(response => {
             localStorage.setItem('token', response.data.token)
+            window.location.replace('/')
         }).catch(error => {
-            console.log(error)
+            setMessage(error.response.data)
+            console.log(error.response.data)
         })
     }
 

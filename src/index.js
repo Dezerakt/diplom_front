@@ -12,6 +12,8 @@ import SignIn from "./Components/SignIn";
 import Cart from "./Components/Cart";
 import Profile from "./Components/Profile";
 
+const ifAuth = localStorage.getItem('token')
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
@@ -22,8 +24,13 @@ root.render(
             <Route path={'/singer/:singer_id'} element={<Singer/>}/>
             <Route path={'/auth/sign-up'} element={<SignUp/>}/>
             <Route path={'/auth/sign-in'} element={<SignIn/>}/>
-            <Route path={'/cart'} element={<Cart/>}/>
-            <Route path={'/profile'} element={<Profile/>}/>
+            {
+                ifAuth
+                    ? <>
+                        <Route path={'/cart'} element={<Cart/>}/>
+                        <Route path={'/profile'} element={<Profile/>}/>
+                    </> : null
+            }
         </Routes>
     </BrowserRouter>
 );

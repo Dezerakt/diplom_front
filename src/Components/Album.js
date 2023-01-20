@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Layout from "../Assets/Layout";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {Button, Col, Container, Image, ListGroup, Row, Table} from "react-bootstrap";
 import axios from "axios";
 
@@ -9,6 +9,8 @@ function Album(props) {
     const [singer, setSinger] = useState([]);
     const back_url = process.env.REACT_APP_BACK_URL;
     let {album_id} = useParams()
+    const ifAuth = localStorage.getItem('token')
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(back_url + '/api/album/' + album_id)
@@ -22,6 +24,10 @@ function Album(props) {
     }, []);
 
     function addToCart(albumId){
+        if (!ifAuth){
+            navigate('/auth/sign-in')
+        }
+
         const arr = localStorage.getItem('albums') !== null ? localStorage.getItem('albums').split(',') : [];
 
         if(arr.find(x => x === albumId) === undefined){
@@ -37,8 +43,10 @@ function Album(props) {
                     <Col xxl={2} xl={3} lg={5} md={6}>
                         <Image src={albums.image_url}
                             style={{
-                                width: '100%',
-                                height: '100%'
+                                justifyContent: "center",
+                                margin: "auto",
+                                width: '240px',
+                                height: '240px'
                             }}
                         />
 
